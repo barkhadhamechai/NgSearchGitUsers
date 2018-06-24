@@ -12,16 +12,24 @@ export class UserListComponent implements OnInit {
   totalResults:number=0;
   p: number = 1;
   userList:user[]=new Array<user>();
+  searchString:string='';
+
   constructor(private httpService:HttpClientService) { }
 
   ngOnInit() {
 
   }
 
-  searchUser(searchString):void{
+  changedSearchString($event) {
+    this.searchString = $event;
+    this.searchUser();
+  }
+
+  searchUser():void{
+    this.userList=new Array<user>();
     var searchUrl:string='/search/users';
     var options = new Object({
-      q: searchString
+      q: this.searchString
     });
     this.httpService.get(searchUrl,options)
     .subscribe(

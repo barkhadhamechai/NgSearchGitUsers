@@ -1,15 +1,21 @@
-<label>Total Results:{{totalResults}}</label>
-<div id="user-list" *ngFor="let user of userList | paginate: { itemsPerPage: 3, currentPage: p }">
-  <div class="image-div">
-    <img src={{user.avatar_url}} alt={{user.login}} class="image">
-  </div>
-  <div class="text-div">
-    <div class="card-text name">{{user.login}}</div>
-    <div class="card-text card-details">Profile URL: {{user.url}} </div>
-    <div class="card-text">
-      <input type="button" class="details-button" (click)="getRepoDetails(user)" value="Details">
+<div class="header">
+<app-sort-by style="float:left;" class="header-box"></app-sort-by>
+<app-search style="float:right;" class="header-box" (changedSearchString)="changedSearchString($event)"></app-search>
+</div>
+<div class="body">
+  <label>Total Results:{{totalResults}}</label>
+  <div id="user-list" *ngFor="let user of userList | paginate: { itemsPerPage: 3, currentPage: p }">
+    <div class="image-div">
+      <img src={{user.avatar_url}} alt={{user.login}} class="image">
+    </div>
+    <div class="text-div">
+      <div class="card-text name">{{user.login}}</div>
+      <div class="card-text card-details">Profile URL: {{user.url}} </div>
+      <div class="card-text">
+        <input type="button" class="details-button" (click)="getRepoDetails(user)" value="Details">
+      </div>
     </div>
   </div>
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  <input type="button" (click)="searchUser('barkha')" value="Search" />
 </div>
-<pagination-controls (pageChange)="p = $event"></pagination-controls>
-<input type="button" (click)="searchUser('barkha')" value="Search" />

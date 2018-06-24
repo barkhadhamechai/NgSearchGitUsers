@@ -1,2 +1,2 @@
-<input type="text" [(ngModel)]="searchString" placeholder="Search Text" class="searchBox">
+<input type="text" [(ngModel)]="searchString" placeholder="Search Text" class="searchBox" (ngModelChange)="sendSearchStringChangeEvent()"> 
 
