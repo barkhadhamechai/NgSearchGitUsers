@@ -1,0 +1,4 @@
+<select type="text" class="sortBox" [(ngModel)]="sortString" name="sortBy"
+  #sortBy="ngModel">
+  <option *ngFor="let sortBy of getSortKeys()" [ngValue]="sortBy">{{sortBy}}</option>
+</select>
