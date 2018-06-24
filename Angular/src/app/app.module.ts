@@ -5,7 +5,9 @@ import { AppComponent } from './app.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { SearchComponent } from './search/search.component';
 import { SortByComponent } from './sort-by/sort-by.component';
+import { HttpModule } from '@angular/http';
 import { HttpClientService } from './http-client.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,10 @@ import { HttpClientService } from './http-client.service';
   ],
   imports: [
     BrowserModule,
-    SlimLoadingBarModule
+    SlimLoadingBarModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpModule
   ],
   providers: [HttpClientService],
   bootstrap: [AppComponent]
