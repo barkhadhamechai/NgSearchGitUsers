@@ -8,7 +8,8 @@ import { user } from './user.model';
   styleUrls: ['./user-list.component.css']
 })
 export class UserListComponent implements OnInit {
-
+  totalResults:number=0;
+  p: number = 1;
   userList:user[]=new Array<user>();
   constructor(private httpService:HttpClientService) { }
 
@@ -16,7 +17,7 @@ export class UserListComponent implements OnInit {
 
   }
 
-  searchUser(searchString):any{
+  searchUser(searchString):void{
     var searchUrl:string='/search/users';
     var options = new Object({
       q: searchString
@@ -24,14 +25,20 @@ export class UserListComponent implements OnInit {
     this.httpService.get(searchUrl,options)
     .subscribe(
       response=>{
-        console.log(response);
+        this.totalResults=response.json().total_count;
         for(let i=0;i<response.json().items.length;i++){
           let userJson=response.json().items[i];
           let u=new user().deserialize(userJson);
+
           this.userList.push(u);
         }
       }
     );
+  }
+
+  getRepoDetails(userName):void{
+    var fetchRepoUrl:string='/users/'+userName+'/repos';
+    //this.httpService.
   }
 
 }

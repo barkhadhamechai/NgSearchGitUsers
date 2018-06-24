@@ -8,6 +8,8 @@ import { SortByComponent } from './sort-by/sort-by.component';
 import { HttpModule } from '@angular/http';
 import { HttpClientService } from './http-client.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {NgxPaginationModule} from 'ngx-pagination';
+
 
 @NgModule({
   declarations: [
@@ -21,7 +23,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     SlimLoadingBarModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpModule
+    HttpModule,
+    NgxPaginationModule
   ],
   providers: [HttpClientService],
   bootstrap: [AppComponent]
