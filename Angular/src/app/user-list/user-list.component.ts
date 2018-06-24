@@ -13,16 +13,45 @@ export class UserListComponent implements OnInit {
   p: number = 1;
   userList:user[]=new Array<user>();
   searchString:string='';
+  sortCondition:number=1;
+  sortKey:string="login";
+  isSortReverse:boolean=false;
 
   constructor(private httpService:HttpClientService) { }
 
   ngOnInit() {
+    this.searchUser();
+  }
 
+  sortList():void{
+    switch(this.sortCondition){
+      case 0:
+      this.sortKey="login";
+      this.isSortReverse=false;
+        break;
+      case 1:
+      this.sortKey="login";
+      this.isSortReverse=true;
+        break;
+      case 2:
+      this.sortKey="score";
+      this.isSortReverse=false;
+        break;
+      case 3:
+      this.sortKey="score";
+      this.isSortReverse=true;
+        break;
+    }
   }
 
   changedSearchString($event) {
     this.searchString = $event;
     this.searchUser();
+  }
+
+  changedSortCondition($event){
+    this.sortCondition=$event;
+    this.sortList();
   }
 
   searchUser():void{
@@ -58,5 +87,7 @@ export class UserListComponent implements OnInit {
       }
     )
   }
+
+  
 
 }

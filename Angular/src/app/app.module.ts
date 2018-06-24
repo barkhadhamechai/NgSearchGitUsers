@@ -9,6 +9,7 @@ import { HttpModule } from '@angular/http';
 import { HttpClientService } from './http-client.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { Ng2OrderModule } from 'ng2-order-pipe';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import {NgxPaginationModule} from 'ngx-pagination';
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    Ng2OrderModule
   ],
   providers: [HttpClientService],
   bootstrap: [AppComponent]

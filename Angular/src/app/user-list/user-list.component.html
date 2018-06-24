@@ -1,10 +1,10 @@
 <div class="header">
-<app-sort-by style="float:left;" class="header-box"></app-sort-by>
+<app-sort-by style="float:left;" class="header-box" (changedSortCondition)="changedSortCondition($event)"></app-sort-by>
 <app-search style="float:right;" class="header-box" (changedSearchString)="changedSearchString($event)"></app-search>
 </div>
 <div class="body">
   <label>Total Results:{{totalResults}}</label>
-  <div id="user-list" *ngFor="let user of userList | paginate: { itemsPerPage: 3, currentPage: p }">
+  <div id="user-list" *ngFor="let user of userList | orderBy: sortKey : isSortReverse | paginate: { itemsPerPage: 3, currentPage: p } ">
     <div class="image-div">
       <img src={{user.avatar_url}} alt={{user.login}} class="image">
     </div>
