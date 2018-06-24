@@ -4,8 +4,11 @@
     <img src={{user.avatar_url}} alt={{user.login}} class="image">
   </div>
   <div class="text-div">
-    <label>{{user.login}}</label>
-    <input type="button" (click)="getRepoDetails(user)" value="Details">
+    <div class="card-text name">{{user.login}}</div>
+    <div class="card-text card-details">Profile URL: {{user.url}} </div>
+    <div class="card-text">
+      <input type="button" class="details-button" (click)="getRepoDetails(user)" value="Details">
+    </div>
   </div>
 </div>
 <pagination-controls (pageChange)="p = $event"></pagination-controls>
