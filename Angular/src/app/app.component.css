@@ -12,6 +12,7 @@
     background: #d5cece;
     padding-right: 20%;
     padding-left: 20%;
+    overflow-y:scroll;
 } 
 
 .header-box{

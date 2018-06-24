@@ -1,4 +1,9 @@
-<div id="user-list">
-  
+<div id="user-list" *ngFor="let user of userList">
+  <div class="image-div">
+    <img src={{user.avatar_url}} alt={{user.login}} class="image">
   </div>
-  
+  <div class="text-div">
+    <label>{{user.login}}</label>
+  </div>
+</div>
+<input type="button" (click)="searchUser('barkha')" value="Search" />
