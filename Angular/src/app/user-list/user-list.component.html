@@ -5,6 +5,7 @@
   </div>
   <div class="text-div">
     <label>{{user.login}}</label>
+    <input type="button" (click)="getRepoDetails(user)" value="Details">
   </div>
 </div>
 <pagination-controls (pageChange)="p = $event"></pagination-controls>

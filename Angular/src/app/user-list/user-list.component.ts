@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClientService } from '../../app/http-client.service';
 import { user } from './user.model';
+import { RepoDetails } from './repo-details.model';
 
 @Component({
   selector: 'app-user-list',
@@ -36,9 +37,18 @@ export class UserListComponent implements OnInit {
     );
   }
 
-  getRepoDetails(userName):void{
-    var fetchRepoUrl:string='/users/'+userName+'/repos';
-    //this.httpService.
+  getRepoDetails(userObject):void{
+    var fetchRepoUrl:string='/users/'+userObject.login+'/repos';
+    this.httpService.get(fetchRepoUrl)
+    .subscribe(
+      response=>{
+        for(let i=0;i<response.json().length;i++)
+        {
+            let repoDetail=new RepoDetails().deserialize(response.json()[i]);
+            userObject.repoList.push(repoDetail);
+        }
+      }
+    )
   }
 
 }
