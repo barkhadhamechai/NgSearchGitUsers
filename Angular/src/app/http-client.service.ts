@@ -7,13 +7,13 @@ import 'rxjs/Rx';
 })
 export class HttpClientService {
   baseUrl: string;
-  constructor(private http: Http) { 
-    this.baseUrl='https://api.github.com/';
+  constructor(private http: Http) {
+    this.baseUrl = 'https://api.github.com';
   }
   get(url, params = {}) {
-  const urlParameters = Object.keys(params).map((i) => i + '=' + params[i]).join('&');
+    const urlParameters = Object.keys(params).map((i) => i + '=' + params[i]).join('&');
     return this.http.get(this.baseUrl + url + '?' + urlParameters)
-        .do((data) => {
+      .do((data) => {
         console.log('data', data);
       }, (error) => {
         if (error.status === 0) {
@@ -22,7 +22,6 @@ export class HttpClientService {
         if (error.status >= 500) {
           return;
         }
-        
       });
   }
 }
