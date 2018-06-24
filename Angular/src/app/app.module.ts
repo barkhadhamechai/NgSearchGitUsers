@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { SearchComponent } from './search/search.component';
 import { SortByComponent } from './sort-by/sort-by.component';
+import { HttpClientService } from './http-client.service';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,7 @@ import { SortByComponent } from './sort-by/sort-by.component';
     BrowserModule,
     SlimLoadingBarModule
   ],
-  providers: [],
+  providers: [HttpClientService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
