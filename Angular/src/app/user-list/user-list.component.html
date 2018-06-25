@@ -1,19 +1,36 @@
 <div class="header">
-<app-sort-by style="float:left;" class="header-box" (changedSortCondition)="changedSortCondition($event)"></app-sort-by>
-<app-search style="float:right;" class="header-box" (changedSearchString)="changedSearchString($event)"></app-search>
+  <app-sort-by style="float:left;" class="header-box" (changedSortCondition)="changedSortCondition($event)"></app-sort-by>
+  <app-search style="float:right;" class="header-box" (changedSearchString)="changedSearchString($event)"></app-search>
 </div>
 <div class="body">
   <label>Total Results:{{totalResults}}</label>
-  <div id="user-list" *ngFor="let user of userList | orderBy: sortKey : isSortReverse | paginate: { itemsPerPage: 3, currentPage: p } ">
+  <div *ngFor="let user of userList | orderBy: sortKey : isSortReverse | paginate: { itemsPerPage: 3, currentPage: p } " [ngClass]="{'minified-user-list':!user.showDetails,'expanded-user':user.showDetails}">
     <div class="image-div">
       <img src={{user.avatar_url}} alt={{user.login}} class="image">
     </div>
     <div class="text-div">
       <div class="card-text name">{{user.login}}</div>
-      <div class="card-text card-details">Profile URL: {{user.url}} </div>
-      <div class="card-text">
+      <div class="card-text">Profile URL: {{user.url}} </div>
+      <div class="card-text" *ngIf="!user.showDetails,else expandedDiv">
         <input type="button" class="details-button" (click)="getRepoDetails(user)" value="Details">
       </div>
+      <ng-template #expandedDiv>
+        <table>
+          <tr *ngFor="let repo of user.repoList">
+            <th>{{repo.name}}</th>
+            <th>{{repo.language}}</th>
+          </tr>
+        </table>
+        <!-- <div >
+          
+            <span class="card-details">{{repo.name}}</span>
+            <span class="card-details">{{repo.language}}</span>
+          
+        </div> -->
+        <div class="card-text">
+          <input type="button" class="details-button" (click)="user.showDetails=false" value="Collapse">
+        </div>
+      </ng-template>
     </div>
   </div>
   <pagination-controls (pageChange)="p = $event"></pagination-controls>
