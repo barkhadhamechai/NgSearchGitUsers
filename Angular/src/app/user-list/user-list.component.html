@@ -18,8 +18,8 @@
       <ng-template #expandedDiv>
         <table>
           <tr *ngFor="let repo of user.repoList">
-            <th>{{repo.name}}</th>
-            <th>{{repo.language}}</th>
+            <th style="overflow-wrap:break-word">{{repo.name}}</th>
+            <th style="overflow-wrap:break-word">{{repo.language}}</th>
           </tr>
         </table>
         <!-- <div >

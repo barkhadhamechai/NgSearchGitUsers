@@ -9,7 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 })
 export class SortByComponent implements OnInit {
   sortByList: typeof sortList = sortList;
-  sortString: any;
+  sortString: any=this.sortByList[3];
   @Output() changedSortCondition = new EventEmitter<number>();
   constructor() { }
 
