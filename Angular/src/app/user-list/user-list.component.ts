@@ -13,7 +13,7 @@ export class UserListComponent implements OnInit {
   totalResults:number=0;
   p: number = 1;
   userList:user[]=new Array<user>();
-  searchString:string='barkha';
+  searchString:string='a';
   sortCondition:number=1;
   sortKey:string="login";
   isSortReverse:boolean=false;
