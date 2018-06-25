@@ -12,7 +12,7 @@ export class UserListComponent implements OnInit {
   totalResults:number=0;
   p: number = 1;
   userList:user[]=new Array<user>();
-  searchString:string='';
+  searchString:string='barkha';
   sortCondition:number=1;
   sortKey:string="login";
   isSortReverse:boolean=false;
@@ -56,6 +56,7 @@ export class UserListComponent implements OnInit {
 
   searchUser():void{
     this.userList=new Array<user>();
+    this.totalResults=0;
     var searchUrl:string='/search/users';
     var options = new Object({
       q: this.searchString
@@ -70,12 +71,18 @@ export class UserListComponent implements OnInit {
 
           this.userList.push(u);
         }
+      },
+      error=>{
+        
       }
     );
   }
 
   getRepoDetails(userObject):void{
+    userObject.showDetails=true;
     var fetchRepoUrl:string='/users/'+userObject.login+'/repos';
+    if (userObject.repoList.length>0)
+      return;
     this.httpService.get(fetchRepoUrl)
     .subscribe(
       response=>{
@@ -84,6 +91,9 @@ export class UserListComponent implements OnInit {
             let repoDetail=new RepoDetails().deserialize(response.json()[i]);
             userObject.repoList.push(repoDetail);
         }
+      },
+      error=>{
+
       }
     )
   }
