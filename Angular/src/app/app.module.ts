@@ -8,22 +8,30 @@ import { SortByComponent } from './sort-by/sort-by.component';
 import { HttpModule } from '@angular/http';
 import { HttpClientService } from './http-client.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {NgxPaginationModule} from 'ngx-pagination';
+import { Ng2OrderModule } from 'ng2-order-pipe';
+import { MessagingServiceService } from './messaging-service.service';
+import { MessageHandlingComponent } from './message-handling/message-handling.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserListComponent,
     SearchComponent,
-    SortByComponent
+    SortByComponent,
+    MessageHandlingComponent,
+    
   ],
   imports: [
     BrowserModule,
     SlimLoadingBarModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpModule
+    HttpModule,
+    NgxPaginationModule,
+    Ng2OrderModule
   ],
-  providers: [HttpClientService],
+  providers: [HttpClientService,MessagingServiceService,MessageHandlingComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

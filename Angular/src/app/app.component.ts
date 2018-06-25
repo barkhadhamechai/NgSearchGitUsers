@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import {SlimLoadingBarService} from 'ng2-slim-loading-bar';
+import { MessagingServiceService } from './messaging-service.service';
+import {MessageHandlingComponent} from './message-handling/message-handling.component';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +11,10 @@ import {SlimLoadingBarService} from 'ng2-slim-loading-bar';
 export class AppComponent {
   title = 'app';
 
-  constructor(private _loadingBar: SlimLoadingBarService){
-    
+  constructor(messagingComponent: MessageHandlingComponent,
+    private messagingService: MessagingServiceService) {
+      messagingService.toastObject.subscribe((toast) => {
+        messagingComponent.setMessage(toast.body, toast.type);
+    });
   }
 }
