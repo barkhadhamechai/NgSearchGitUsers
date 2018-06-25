@@ -3,6 +3,7 @@
   <app-search style="float:right;" class="header-box" (changedSearchString)="changedSearchString($event)"></app-search>
 </div>
 <div class="body">
+    <app-message-handling [message]="toast.message"></app-message-handling>
   <label>Total Results:{{totalResults}}</label>
   <div *ngFor="let user of userList | orderBy: sortKey : isSortReverse | paginate: { itemsPerPage: 3, currentPage: p } " [ngClass]="{'minified-user-list':!user.showDetails,'expanded-user':user.showDetails}">
     <div class="image-div">

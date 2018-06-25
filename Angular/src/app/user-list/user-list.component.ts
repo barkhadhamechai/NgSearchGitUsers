@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClientService } from '../../app/http-client.service';
 import { user } from './user.model';
 import { RepoDetails } from './repo-details.model';
+import { MessageHandlingComponent } from '../message-handling/message-handling.component';
 
 @Component({
   selector: 'app-user-list',
@@ -17,7 +18,8 @@ export class UserListComponent implements OnInit {
   sortKey:string="login";
   isSortReverse:boolean=false;
 
-  constructor(private httpService:HttpClientService) { }
+  constructor(private httpService:HttpClientService,
+    public toast: MessageHandlingComponent) { }
 
   ngOnInit() {
     this.searchUser();
